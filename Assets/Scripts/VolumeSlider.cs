@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -9,8 +8,6 @@ public class VolumeSlider : MonoBehaviour
     [SerializeField] private AudioMixerGroup _mixerGroup;
     private Slider _slider;
     private VolumeChanger _volumeChanger;
-
-    public Action<AudioMixerGroup, float> Changed;
 
     public float MinValue => _slider.minValue;
     public float MaxValue => _slider.maxValue;

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -11,8 +10,6 @@ public class SoundMuter : MonoBehaviour
     private VolumeChanger _volumeChanger;
     private Button _button;
     private bool _isMuted = false;
-
-    public Action<AudioMixerGroup, float> Changed;
 
     private void Awake()
     {
