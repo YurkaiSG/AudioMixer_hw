@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ public class VolumeSlider : MonoBehaviour
     [SerializeField] private AudioMixerGroup _mixerGroup;
     private Slider _slider;
     private VolumeChanger _volumeChanger;
+
+    public Action<AudioMixerGroup, float> Changed;
 
     public float MinValue => _slider.minValue;
     public float MaxValue => _slider.maxValue;
@@ -21,7 +24,17 @@ public class VolumeSlider : MonoBehaviour
         _slider.maxValue = 1f;
     }
 
-    public void ChangeVolume(float volume)
+    private void OnEnable()
+    {
+        _slider.onValueChanged.AddListener(ChangeVolume);
+    }
+
+    private void OnDisable()
+    {
+        _slider.onValueChanged.RemoveListener(ChangeVolume);
+    }
+
+    private void ChangeVolume(float volume)
     {
         _volumeChanger.ChangeVolume(_mixerGroup, volume);
     }
